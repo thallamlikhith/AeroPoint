@@ -1,0 +1,9 @@
+streamlit
+opencv-python
+numpy
+pandas
+mediapipe==0.10.14
+scikit-learn
+matplotlib
+typing-extensions
+dotenv

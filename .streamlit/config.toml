@@ -1,0 +1,19 @@
+[server]
+headless = true
+enableCORS = false
+enableXsrfProtection = false
+
+[client]
+showErrorDetails = true
+
+[runner]
+# This is the most important line for your DLL errors
+# It prevents Streamlit from using the blocked PyArrow library
+fastRerender = false
+
+[theme]
+primaryColor = "#667eea"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#262730"
+font = "sans serif"
