@@ -1,70 +1,160 @@
-# AI Badminton Analyzer: Real-Time Pose & Shot Analysis System
+# 🏸 AeroPoint: Advanced AI Badminton Coach
 
-AI Badminton Analyzer is a real-time computer vision system designed to analyze badminton performance using pose estimation, shot classification, and movement tracking. It helps players and coaches gain accurate, AI-driven insights into technique, body mechanics, and gameplay efficiency.
+AeroPoint is a cutting-edge computer vision system designed to provide professional-grade feedback for badminton players. By leveraging state-of-the-art pose estimation and biomechanical rules, AeroPoint detects technical mistakes in real-time and provides actionable insights to help athletes improve their game.
 
-## 🔍 Description (349 characters)
-AI Badminton Analyzer uses pose estimation and machine learning to track player movement, classify shots, and detect mistakes. It analyzes joint angles, swing patterns, and footwork, providing instant feedback to help athletes improve accuracy, performance, and overall gameplay.
+---
 
-## 🚀 Features
-- Real-time pose detection and tracking  
-- Shot classification (smash, clear, drop, drive, net shot)  
-- Joint angle and body movement analysis  
-- Mistake detection for incorrect technique  
-- Automatic visual overlay of skeleton and metrics  
-- Streamlit interface for easy use  
+## 🌟 Key Features
 
-## 📂 Project Structure
-badminton_ai/
-│── streamlit_app.py
-│── pipeline.py
-│── pose_estimation.py
-│── mistake_detector.py
-│── ai_models/
-│── utils/
-│── data/
-│── requirements.txt
-│── README.md
+- **🎯 AI Pose Estimation**: High-fidelity tracking of 33 body landmarks using MediaPipe.
+- **🔍 Biomechanical Analysis**: Detection of specific technical flaws:
+  - **Footwork**: Insufficient knee bend for stability.
+  - **Smash Prep**: Incorrect elbow positioning and racket height.
+  - **Swing Mechanics**: Real-time tracking of wrist speed and acceleration.
+- **📊 Interactive Dashboard**: Visual analytics including mistake distribution, confidence scoring, and performance timelines.
+- **🖼️ Visual Evidence Gallery**: Automated extraction of key frames where mistakes occurred for visual review.
+- **💾 Comprehensive Exports**: Download results as professional CSV reports, JSON data, or a ZIP archive of visual evidence.
+- **🚀 Modern UI**: Sleek, responsive Streamlit interface with dark mode support and intuitive workflow.
 
+---
 
+## 🏗️ System Architecture
 
-## 🛠 Installation
+AeroPoint follows a modular, pipeline-oriented architecture to ensure scalability and reliability.
 
-### 1. Create Python 3.10 virtual environment
-py -3.10 -m venv venv
-venv\Scripts\activate
+```mermaid
+graph TD
+    A[User Interface - Streamlit] --> B[Processing Pipeline]
+    B --> C[Pose Estimation Engine - MediaPipe]
+    B --> D[Mistake Detection Engine]
+    D --> E[Rule-based Analysis]
+    E --> F[Heuristic Scoring]
+    B --> G[Report Generator]
+    G --> H[Export Hub - CSV/JSON/ZIP]
+    B --> I[Visualizer]
+    I --> A
+```
 
-### 2. Install dependencies
-pip install -r requirements.txt
-
-
-
-## ▶️ Usage
-Run the Streamlit app:
-
-streamlit run streamlit_app.py
-
-
-Run pipeline manually:
-
-python pipeline.py
-
-
+---
 
 ## 🧠 How It Works
-1. Extracts pose keypoints using MediaPipe  
-2. Calculates angles, movement vectors, and racket-hand motion  
-3. Classifies shots using ML models  
-4. Detects mistakes based on biomechanical patterns  
-5. Displays results with visual overlays and metrics  
 
-## 📌 Requirements
-- Python 3.10
-- MediaPipe 0.10.14
-- Streamlit UI
-- OpenCV for video processing
-- Scikit-learn models  
+The system processes video data through several specialized layers to convert raw pixels into technical coaching advice.
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant S as Streamlit UI
+    participant P as Pipeline
+    participant ME as MediaPipe Engine
+    participant DE as Detection Engine
+
+    U->>S: Upload Video (MP4/MOV)
+    S->>P: Initialize Analysis
+    loop Frame by Frame
+        P->>ME: Extract Pose Landmarks
+        ME-->>P: Keypoints (JSON)
+        P->>DE: Analyze Biomechanics
+        DE-->>P: Mistake Flags & Metrics
+    end
+    P->>S: Deliver Analytics & Gallery
+    S->>U: Display Interactive Report
+```
+
+---
+
+## 🔄 Workflow Diagram
+
+A typical user journey through the AeroPoint application:
+
+```mermaid
+graph LR
+    Upload[Upload Video] --> Analyze[AI Processing]
+    Analyze --> Review[Review Analytics]
+    Review --> Inspect[Inspect Key Frames]
+    Inspect --> Export[Download Reports]
+```
+
+---
+
+## 🛠️ Installation
+
+### Prerequisites
+- Python 3.10 or higher
+- Git
+
+### Steps
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/thallamlikhith/AeroPoint.git
+   cd AeroPoint
+   ```
+
+2. **Create Virtual Environment**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+---
+
+## ⚙️ Environment Setup
+
+While AeroPoint works out of the box for local analysis, you can configure environment variables for extended functionality.
+
+1. Create a `.env` file in the root directory:
+   ```env
+   # Example configuration
+   OUTPUT_DIR=outputs
+   CONFIDENCE_THRESHOLD=0.5
+   ```
+
+---
+
+## 🚀 How to Run
+
+Launch the AeroPoint dashboard using Streamlit:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+The application will be available at `http://localhost:8501`.
+
+---
+
+## 📖 Example Usage
+
+1. **Upload**: Drag and drop your badminton training video (side view recommended).
+2. **Analyze**: Click "Start AI Analysis" to begin processing.
+3. **Explore**:
+   - Use the **Timeline View** to see exactly when mistakes occurred.
+   - Check the **Analytics Dashboard** for high-level performance stats.
+   - Review the **Image Gallery** to see your posture at the moment of error.
+4. **Export**: Click "Download CSV Report" to save your results for later review.
+
+---
+
+## 💻 Tech Stack
+
+- **Core**: Python 3.10
+- **Computer Vision**: MediaPipe (Pose Landmark Detection), OpenCV
+- **Web Framework**: Streamlit
+- **Data Processing**: Pandas, NumPy
+- **Visualizations**: Matplotlib
+- **Packaging**: Zipfile, IO
+
+---
 
 ## 👨‍💻 Author
-**Bunny Bobbali**  
-AI & Data Science Intern  
-AI Badminton Analyzer Project
+
+**Likhith Thallam**  
+*AI & Data Science Intern*  
+
+---
+<p align="center">Made with ❤️ for the Badminton Community</p>
